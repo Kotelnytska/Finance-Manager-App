@@ -1,0 +1,21 @@
+<section class='operations-section section-bgr'>
+<p style="color: green"><%= notice %></p>
+<p>index</p>
+<h2>Operations</h2>
+
+<% if @operations.present? %>
+<div id="operations">
+  <% @operations.each do |operation| %>
+    <%= render operation %>
+    <p>
+      <%= link_to "Show this operation", operations_path(@operation) %>
+    </p>
+  <% end %>
+</div>
+<% else %>
+<div class="notFound">
+<h3>Операцій не знайдено :( </h3>
+</div>
+<% end %>
+<%= link_to "New operation", new_operation_path(@operation) %>
+</section>

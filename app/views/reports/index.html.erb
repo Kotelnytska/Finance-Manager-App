@@ -1,0 +1,40 @@
+<section class="reports px-5 mb-1">
+<div >
+<h2 class="text-uppercase">Генератор Звітів</h2>
+
+<%= form_with(url: "report", method: "get", html: {class: 'report-form'}) do |form| %>
+
+  <div class="form-group">
+<%= form.label name="start_date", "Дата (від): " %>
+<%= form.date_field(:start_date) %> 
+  </div><br/>
+
+  <div class="form-group">
+<%= form.label name="end_date", "Дата (до): " %>
+<%= form.date_field(:end_date) %> 
+  </div></br>
+
+  <div class="form-group">
+<%= label_tag(:operation_type, "Тип операції: ") %>
+<%= select_tag(:operation_type, options_for_select([['Витрата', "expense"], ['Дохід', "income"]])) %>
+  </div></br>
+
+  <div class="form-group">
+<% categories_array = Category.all.map { |c| [c.name, c.id] } %>
+<%= form.label "category", "Категорія: "%>
+<%= select_tag(:category, options_for_select(categories_array)) %>
+  </div></br>
+
+ <div class=" mb-3">
+   <%= submit_tag("По датам", name: "btn_date", class: "form_submit btn btn-success w-25 text-uppercase mb-3") %></br>
+
+   <%= submit_tag("По категоріям", name: "btn_cat", class: "form_submit btn btn-success w-25 text-uppercase") %></br>
+
+ </div>
+<div class="mx-auto">
+<%= form.submit "Очистити", :type => "reset", class: "btn btn-outline-danger margin-left" %></br>
+</div>
+<% end %>
+
+</div>
+</section>
